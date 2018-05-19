@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 )
 
+// image converter
 type Converter struct {
 	Path    string
 	FromExt string

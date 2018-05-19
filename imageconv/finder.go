@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 )
 
+// File finder from Directory
 type Finder struct {
 	Dir string
 	Ext string
