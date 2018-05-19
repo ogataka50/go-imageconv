@@ -1,3 +1,11 @@
+/*
+ Image Converter
+
+ Arguments are...
+  from	convert from ext
+  to	convert to ext
+  dir	target convert dir
+*/
 package main
 
 import (

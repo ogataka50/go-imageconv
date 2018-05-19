@@ -10,6 +10,7 @@ type Finder struct {
 	Ext string
 }
 
+// Check Is Dir
 func (f Finder) IsDir() bool {
 	fInfo, err := os.Stat(f.Dir)
 	if err != nil {
@@ -19,6 +20,7 @@ func (f Finder) IsDir() bool {
 	return fInfo.IsDir()
 }
 
+// Find files by Ext recursively
 func (f Finder) FindByExt() ([]string, error) {
 	var fList []string
 

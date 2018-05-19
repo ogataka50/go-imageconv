@@ -17,6 +17,7 @@ type Converter struct {
 	ToExt   string
 }
 
+// Read image file from file path
 func (c Converter) read() (image.Image, error) {
 	file, err := os.Open(c.Path)
 	defer file.Close()
@@ -44,6 +45,7 @@ func (c Converter) read() (image.Image, error) {
 	return img, err
 }
 
+// Write image file
 func (c Converter) write(img image.Image) (string, error) {
 	convertedPath := c.Path[:len(c.Path)-len(filepath.Ext(c.Path))] + "." + c.ToExt
 
@@ -64,6 +66,7 @@ func (c Converter) write(img image.Image) (string, error) {
 	return convertedPath, err
 }
 
+// Convert image file fromExt -> toExt
 func (c Converter) Convert() error {
 	img, err := c.read()
 	if err != nil {
