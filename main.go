@@ -46,15 +46,15 @@ func main() {
 	wg := &sync.WaitGroup{}
 	for _, v := range fList {
 		wg.Add(1)
-		go func() {
+		go func(path string) {
 			defer wg.Done()
 			c := imageconv.Converter{
-				Path:    v,
+				Path:    path,
 				FromExt: fromExt,
 				ToExt:   toExt,
 			}
 			c.Convert()
-		}()
+		}(v)
 	}
 	wg.Wait()
 
