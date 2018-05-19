@@ -11,13 +11,13 @@ type Finder struct {
 }
 
 // Check Is Dir
-func (f Finder) IsDir() bool {
+func (f Finder) IsDir() (bool, error) {
 	fInfo, err := os.Stat(f.Dir)
 	if err != nil {
-		return false
+		return false, err
 	}
 
-	return fInfo.IsDir()
+	return fInfo.IsDir(), nil
 }
 
 // Find files by Ext recursively

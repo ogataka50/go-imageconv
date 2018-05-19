@@ -1,7 +1,7 @@
 /*
  Image Converter
 
- Arguments are...
+ Arguments...
   from	convert from ext
   to	convert to ext
   dir	target convert dir
@@ -40,7 +40,8 @@ func main() {
 	}
 
 	// chk dir exists
-	if !f.IsDir() {
+	isDir, err := f.IsDir()
+	if !isDir || err != nil {
 		panic("dir not exists : " + f.Dir)
 	}
 
