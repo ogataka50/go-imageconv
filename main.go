@@ -10,14 +10,18 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"os"
 	"sync"
 
 	"github.com/ogataka50/go-imageconv/imageconv"
 )
 
-var fromExt string
-var toExt string
-var dir string
+var (
+	fromExt string
+	toExt   string
+	dir     string
+)
 
 func init() {
 	flag.StringVar(&fromExt, "from", "jpg", "target ext")
@@ -31,7 +35,9 @@ func main() {
 
 	//TODO 対象extかチェック
 	if fromExt == toExt {
-		panic("Invalid ext : from => " + fromExt + ", to => " + toExt)
+		fmt.Fprintf(os.Stderr, "Invalid ext : from => %s, to => %s\n", fromExt, toExt)
+		os.Exit(1)
+
 	}
 
 	f := imageconv.Finder{
@@ -42,13 +48,15 @@ func main() {
 	// chk dir exists
 	isDir, err := f.IsDir()
 	if !isDir || err != nil {
-		panic("dir not exists : " + f.Dir)
+		fmt.Fprintf(os.Stderr, "Dir not exists : %s\n", f.Dir)
+		os.Exit(1)
 	}
 
 	//file finder
 	fList, err := f.FindByExt()
 	if err != nil {
-		panic(err)
+		fmt.Fprintf(os.Stderr, "error : %v\n", err)
+		os.Exit(1)
 	}
 
 	//img convert
@@ -67,4 +75,5 @@ func main() {
 	}
 	wg.Wait()
 
+	os.Exit(0)
 }
