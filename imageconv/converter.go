@@ -36,7 +36,7 @@ func (c Converter) read() (image.Image, error) {
 	case "png":
 		img, err = png.Decode(file)
 	default:
-		err = errors.New("Not Support Ext")
+		err = errors.New("Not Support Ext\n")
 	}
 
 	if err != nil {
@@ -61,7 +61,7 @@ func (c Converter) write(img image.Image) (string, error) {
 	case "png":
 		png.Encode(convertedFile, img)
 	default:
-		err = errors.New("Not Support Ext")
+		err = errors.New("Not Support Ext\n")
 	}
 
 	return convertedPath, err
