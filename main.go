@@ -33,7 +33,7 @@ func main() {
 
 	flag.Parse()
 
-	//TODO 対象extかチェック
+	//TODO Check support ext
 	if fromExt == toExt {
 		fmt.Fprintf(os.Stderr, "Invalid ext : from => %s, to => %s\n", fromExt, toExt)
 		os.Exit(1)
