@@ -71,17 +71,17 @@ func (c Converter) write(img image.Image) (string, error) {
 }
 
 // Convert image file fromExt -> toExt
-func (c Converter) Convert() error {
+func (c Converter) Convert() (string, error) {
 	img, err := c.read()
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	convertedPath, err := c.write(img)
 	if err != nil {
-		return err
+		return "", err
 	}
 	fmt.Println(c.Path + " -> " + convertedPath)
 
-	return nil
+	return convertedPath, nil
 }
